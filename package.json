@@ -2,7 +2,7 @@
   "name": "stepper-react-bootstrap",
   "version": "0.0.1",
   "description": "A react bootstrap based stepper",
-  "main": "dist/index.js",
+  "main": "dist/js/index.js",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w"
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/manisuec/stepper-react-bootstrap#readme",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
     "babel-core": "^6.26.3",
