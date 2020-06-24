@@ -1,9 +1,8 @@
-import sass from 'rollup-plugin-sass';
-import typescript from 'rollup-plugin-typescript2';
-import serve from 'rollup-plugin-serve';
-import livereload from 'rollup-plugin-livereload';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import typescript from "rollup-plugin-typescript2";
+import postcss from "rollup-plugin-postcss";
 
 import pkg from './package.json';
 
@@ -12,19 +11,21 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: 'esm',
-      exports: 'named',
-      sourcemap: true,
-      strict: false
+      format: "cjs",
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: "esm",
+      sourcemap: true
     }
   ],
   plugins: [
+    peerDepsExternal(),
     resolve(),
     commonjs(),
-    sass({ insert: true }),
-    typescript(),
-    serve('dist'),
-    livereload('dist')
+    typescript({ useTsconfigDeclarationDir: true }),
+    postcss()
   ],
   external: ['react', 'react-dom']
 };
